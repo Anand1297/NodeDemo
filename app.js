@@ -1,15 +1,28 @@
-var express = require('express');
-var app= express();
-app.set('view engine','ejs');
-app.get('/',function(req,res){
-res.sendFile(__dirname+'/index.html');
+const http = require('http');
+const port = process.env.PORT || 3000
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello World</h1>');
 });
 
-app.get('/profile/:id',function(req,res){
-res.render('profile',{'person':req.params.id});
+server.listen(port,() => {
+  console.log(`Server running at port `+port);
 });
 
-app.listen(3000);
+// var express = require('express');
+// var app= express();
+// app.set('view engine','ejs');
+// app.get('/',function(req,res){
+// res.sendFile(__dirname+'/index.html');
+// });
+
+// app.get('/profile/:id',function(req,res){
+// res.render('profile',{'person':req.params.id});
+// });
+
+// app.listen(3000);
 // console.log('hello');
 // var http = require('http');
 // const log=require('./logger');
